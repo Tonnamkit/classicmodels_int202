@@ -40,8 +40,8 @@
             </form>
         </div>
         <div class="row">
-            <c:forEach items="${offices}" var="officect">
-               ${officect.officeCode} - ${officect.country} - ${officect.city} - ${officect.territory} <br>
+            <c:forEach items="${offices}" var="officec">
+               ${officec.officeCode} - ${officec.country} - ${officec.city} - ${officec.territory} <br>
 
             </c:forEach>
         <hr>
@@ -56,6 +56,7 @@
 <%--        <c:if test="${message != null}">--%>
 <%--        <div class="row"><p> ${message}</p></div>--%>
 <%--        </c:if>--%>
+        </div>
     </div>
 </body>
 </html>
