@@ -7,6 +7,7 @@
   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <class>sit.int202.classicmodels.entities.Office</class>
     <class>sit.int202.classicmodels.entities.Employee</class>
+    <class>sit.int202.classicmodels.entities.Product</class>
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/classicmodels"/>

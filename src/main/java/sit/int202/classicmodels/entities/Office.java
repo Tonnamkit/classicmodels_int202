@@ -29,6 +29,6 @@ public class Office {
     private String postalCode;
     private String phone;
     private String territory;
-    @OneToMany (mappedBy = "officeCode")
+    @OneToMany (mappedBy = "office")
     private List<Employee> employeeList;
 }

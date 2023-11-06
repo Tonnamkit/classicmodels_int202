@@ -21,7 +21,7 @@ public class Employee {
     private String lastName;
     private String extension;
     private String email;
-    private String officeCode;
+//    private String officeCode;
     private Integer reportsTo;
     private String jobTitle;
     @ManyToOne
