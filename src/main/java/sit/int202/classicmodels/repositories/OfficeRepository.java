@@ -72,11 +72,12 @@ public class OfficeRepository {
 
     public boolean update(Office newOffice) {
         if (newOffice != null) {
-            EntityManager entityManager = getEntityManager();Office office = find(newOffice.getOfficeCode());
+            EntityManager entityManager = getEntityManager();
+            Office office = find(newOffice.getOfficeCode());
             if (office != null) {
                 entityManager.getTransaction().begin();
                 //set all attributes office with newOffice (DIY)
-                // example : office.setCountry(newOffice.getCountry());
+                //office.setCountry(newOffice.getCountry());
                 entityManager.getTransaction().commit();
                 return true;
             }
