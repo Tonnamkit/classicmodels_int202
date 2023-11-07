@@ -12,22 +12,32 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@WebServlet(name = "OfficeUpdateServlet", value = "/093/office-update")
+@WebServlet(name = "OfficeUpdateServlet", value = "/093/office-management")
 public class OfficeUpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OfficeRepository officeRepository = new OfficeRepository();
         List<Office> officeList = officeRepository.findAll();
-        request.setAttribute("officeList",officeList);
-        String city = request.getParameter("officeList");
-        if (city != null){
-            List<Office> offices = officeRepository.findByCityOrCountry(city);
-            Set<Office> officeUnique = new HashSet<>();
-            if (offices != null){
-                officeUnique.addAll(offices);
+        Set<String> uniqueSetCountry = new HashSet<>();
+        Set<String> uniqueSetCity = new HashSet<>();
+        if (officeList != null){
+            for (Office office: officeList) {
+                uniqueSetCountry.add(office.getCountry());
+                uniqueSetCity.add(office.getCity());
             }
-            request.setAttribute("offices",new ArrayList<>(officeUnique));
         }
-        request.getRequestDispatcher("/office-update.jsp").forward(request,response);
+        request.setAttribute("uniqueCountry",uniqueSetCountry);
+        request.setAttribute("uniqueCity",uniqueSetCity);
+        request.setAttribute("officeList",officeList);
+        String findVal = request.getParameter("officeList");
+        if (findVal != null){
+            if(!findVal.equals("all")){
+                List<Office> offices = officeRepository.findByCityOrCountry(findVal);
+                request.setAttribute("offices",offices);
+            }else {
+                request.setAttribute("offices", officeList);
+            }
+        }
+        request.getRequestDispatcher("/office-management.jsp").forward(request,response);
 
     }
     @Override
@@ -49,7 +59,7 @@ public class OfficeUpdateServlet extends HttpServlet {
             request.setAttribute("message",message);
         }
         officeRepository.close();
-        request.getRequestDispatcher("/office-update.jsp").forward(request,response);
+        request.getRequestDispatcher("/office-management.jsp").forward(request,response);
     }
 }
  

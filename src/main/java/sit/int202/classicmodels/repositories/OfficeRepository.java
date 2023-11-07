@@ -77,7 +77,7 @@ public class OfficeRepository {
             if (office != null) {
                 entityManager.getTransaction().begin();
                 //set all attributes office with newOffice (DIY)
-                //office.setCountry(newOffice.getCountry());
+                office.setCountry(newOffice.getCountry());
                 entityManager.getTransaction().commit();
                 return true;
             }
