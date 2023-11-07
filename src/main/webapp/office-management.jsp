@@ -133,6 +133,14 @@
         </div>
         <hr>
 
+        <div class="row"><h2>Remove Office By Office Code</h2></div>
+        <div class="row">
+            <form action="office-management" method="post">
+                <input type="hidden" name="action" value="delete">
+                <input type="text" name="officeRemoveCode">
+                <input type="submit" value="REMOVE">
+            </form>
+        </div>
     <%--        <div class="row"><h2>Update Office</h2></div>--%>
 <%--        <div class="row">--%>
 <%--            <form action="office-update" method="post">--%>

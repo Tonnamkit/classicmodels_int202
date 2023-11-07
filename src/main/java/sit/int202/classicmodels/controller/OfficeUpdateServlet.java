@@ -115,7 +115,7 @@ public class OfficeUpdateServlet extends HttpServlet {
     }
 
     private void handleDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String officeCode = request.getParameter("removeOffice");
+        String officeCode = request.getParameter("removeOffice") == null? request.getParameter("officeRemoveCode"): request.getParameter("removeOffice");
         if (officeCode != null){
             Office office = officeRepository.find(officeCode);
             officeRepository.delete(office);
