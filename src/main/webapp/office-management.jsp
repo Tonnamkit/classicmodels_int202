@@ -15,54 +15,63 @@
 <body>
     <div class="container">
         <div class="row"><h2>Office Management</h2></div>
-        <div class="row">
-            <h3>Find By City or Country</h3>
-        </div>
-        <div class="row">
-            <form action="office-management" method="get">
-                <label><b>Select By:</b></label>
-                    <select name="officeList" id="officeList">
-                        <option value="all">ALL</option>
-                            <optgroup label="Country">
-                                <c:forEach items="${uniqueCountry}" var="country">
-                                        <c:if test="${country != null}">
-                                                <option value="${country}">${country}</option>
-                                        </c:if>
-                                </c:forEach>
-                            </optgroup>
-
-                            <optgroup label="City">
-                                <c:forEach items="${uniqueCity}" var="city">
-                                <c:if test="${city != null}">
-                                        <option value="${city}">${city}</option>
-                                </c:if>
-                                </c:forEach>
-                            </optgroup>
-                    </select>
-                <input type="submit" value="FIND">
-            </form>
-
-        </div>
-        <div class="row">
-            <div class="card-deck">
-                <c:forEach items="${offices}" var="office">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">${office.officeCode}</h5>
-                            <p class="card-text">Country: ${office.country}</p>
-                            <p class="card-text">City: ${office.city}</p>
-                            <p class="card-text">Territory: ${office.territory}</p>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
         <hr>
+            <div class="row">
+                <h3>Find By City or Country</h3>
+            </div>
+            <div class="row">
+                <form action="office-management" method="get">
+                    <label><b>Select By:</b></label>
+                        <select name="officeList" id="officeList">
+                            <option value="all">ALL</option>
+                                <optgroup label="Country">
+                                    <c:forEach items="${uniqueCountry}" var="country">
+                                            <c:if test="${country != null}">
+                                                    <option value="${country}">${country}</option>
+                                            </c:if>
+                                    </c:forEach>
+                                </optgroup>
+
+                                <optgroup label="City">
+                                    <c:forEach items="${uniqueCity}" var="city">
+                                    <c:if test="${city != null}">
+                                            <option value="${city}">${city}</option>
+                                    </c:if>
+                                    </c:forEach>
+                                </optgroup>
+                        </select>
+                    <input type="submit" value="FIND">
+                </form>
+            </div>
+
+            <div class="row">
+                <div class="card-deck">
+                    <c:forEach items="${offices}" var="office">
+                        <form action="office-management" method="post">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="removeOffice" value="${office.officeCode}">
+                                    <input type="submit" value="REMOVE">
+                                    <h5 class="card-title">${office.officeCode}</h5>
+                                    <p class="card-text">Country: ${office.country}</p>
+                                    <p class="card-text">City: ${office.city}</p>
+                                    <p class="card-text">Territory: ${office.territory}</p>
+                                </div>
+                            </div>
+                        </form>
+                    </c:forEach>
+                </div>
+                <hr>
+            </div>
+
+
 
         <div class="row"><h2>Add Office</h2></div>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="office-add" method="post">
+                <form action="office-management" method="post">
+                    <input type="hidden" name="action" value="add">
                     <div class="form-group">
                         <label for="officeCode">Code:</label>
                         <input type="text" id="officeCode" name="officeCode" class="form-control">
@@ -122,7 +131,7 @@
                 <h5 class="mt-3">${alert}</h5>
             </div>
         </div>
-
+        <hr>
 
     <%--        <div class="row"><h2>Update Office</h2></div>--%>
 <%--        <div class="row">--%>
