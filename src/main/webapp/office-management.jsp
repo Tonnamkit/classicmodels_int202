@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="row"><h2>Office Management</h2></div>
+        <div class="row"><h2>Office Management</h2></div> <h4>${statusMsg}</h4>
         <hr>
             <div class="row">
                 <h3>Find By City or Country</h3>

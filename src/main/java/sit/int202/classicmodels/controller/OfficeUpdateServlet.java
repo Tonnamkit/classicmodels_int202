@@ -75,7 +75,6 @@ public class OfficeUpdateServlet extends HttpServlet {
             }
             request.setAttribute("message",message);
         }
-        officeRepository.close();
         request.getRequestDispatcher("/office-management.jsp").forward(request,response);
     }
 
@@ -111,15 +110,29 @@ public class OfficeUpdateServlet extends HttpServlet {
                 request.setAttribute("alert", "Fail to Add Office");
             }
         }
+        request.getSession().setAttribute("statusMsg",null);
         request.getRequestDispatcher("/office-management.jsp").forward(request,response);
     }
 
     private void handleDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String officeCode = request.getParameter("removeOffice") == null? request.getParameter("officeRemoveCode"): request.getParameter("removeOffice");
+        String message;
         if (officeCode != null){
             Office office = officeRepository.find(officeCode);
-            officeRepository.delete(office);
+            if (office != null) {
+                if (officeRepository.delete(office)) {
+                    message = "Remove Office Succesfully";
+                } else {
+                    message = "Failed To Remove Office";
+                }
+            }else {
+                message = "Office Not Found";
+            }
+        }else {
+            message = "Invalid Input";
+
         }
+        request.getSession().setAttribute("statusMsg", message);
         response.sendRedirect(request.getContextPath() + "/093/office-management?officeList=all");
     }
 }
