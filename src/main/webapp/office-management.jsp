@@ -14,7 +14,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="row"><h2>Office Management</h2></div> <h4>${statusMsg}</h4>
+        <div class="row">
+            <h2>Office Management</h2>
+            <h4 class="ms-5">${statusMsg}</h4>
+        </div>
         <hr>
             <div class="row">
                 <h3>Find By City or Country</h3>
@@ -66,6 +69,15 @@
             </div>
 
 
+        <div class="row"><h2>Remove Office By Office Code</h2></div>
+        <div class="row">
+            <form action="office-management" method="post">
+                <input type="hidden" name="action" value="delete">
+                <input type="text" name="officeRemoveCode">
+                <input type="submit" value="REMOVE" class="btn btn-primary">
+            </form>
+        </div>
+        <hr>
 
         <div class="row"><h2>Add Office</h2></div>
         <div class="row justify-content-center">
@@ -133,14 +145,7 @@
         </div>
         <hr>
 
-        <div class="row"><h2>Remove Office By Office Code</h2></div>
-        <div class="row">
-            <form action="office-management" method="post">
-                <input type="hidden" name="action" value="delete">
-                <input type="text" name="officeRemoveCode">
-                <input type="submit" value="REMOVE">
-            </form>
-        </div>
+
     <%--        <div class="row"><h2>Update Office</h2></div>--%>
 <%--        <div class="row">--%>
 <%--            <form action="office-update" method="post">--%>

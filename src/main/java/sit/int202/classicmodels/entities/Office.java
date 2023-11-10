@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @ToString
 @NamedQueries({
-        @NamedQuery(name = "OFFICE.FIND_ALL", query = "SELECT o FROM Office o"),
+        @NamedQuery(name = "OFFICE.FIND_ALL", query = "SELECT o FROM Office o ORDER BY officeCode"),
         @NamedQuery(name = "OFFICE.FIND_BY_COUNTRY", query = "SELECT o FROM Office o WHERE o.country LIKE :countryParam"),
         @NamedQuery(name = "OFFICE.FIND_BY_CITY_OR_COUNTRY",
                 query = "SELECT o FROM Office o WHERE lower(o.city) LIKE :city OR lower(o.country) LIKE :country")

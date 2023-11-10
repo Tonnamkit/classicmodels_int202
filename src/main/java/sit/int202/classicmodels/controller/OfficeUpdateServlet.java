@@ -61,9 +61,9 @@ public class OfficeUpdateServlet extends HttpServlet {
 
     private void handleUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String countryOrCity = request.getParameter("uinput");
-        if (countryOrCity != null) {
+        String message;
+        if (!isNullOrEmpty(countryOrCity)) {
             List<Office> officeList = officeRepository.findByCityOrCountry(countryOrCity);
-            String message;
             if (officeList != null && !officeList.isEmpty()){
                 for (Office office: officeList) {
                     office.setCountry(countryOrCity);
@@ -73,8 +73,10 @@ public class OfficeUpdateServlet extends HttpServlet {
             }else {
                 message = "No Offices Found.";
             }
-            request.setAttribute("message",message);
+        }else{
+            message = "Invalid Input";
         }
+        request.getSession().setAttribute("statusMsg",message);
         request.getRequestDispatcher("/office-management.jsp").forward(request,response);
     }
 
