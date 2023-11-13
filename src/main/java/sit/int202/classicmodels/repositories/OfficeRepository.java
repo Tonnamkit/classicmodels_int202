@@ -78,7 +78,14 @@ public class OfficeRepository {
             if (office != null) {
                 entityManager.getTransaction().begin();
                 //set all attributes office with newOffice (DIY)
+                office.setAddressLine1(newOffice.getAddressLine1());
+                office.setAddressLine2(newOffice.getAddressLine2());
+                office.setCity(newOffice.getCity());
+                office.setState(newOffice.getState());
                 office.setCountry(newOffice.getCountry());
+                office.setPostalCode(newOffice.getPostalCode());
+                office.setPhone(newOffice.getPhone());
+                office.setTerritory(newOffice.getTerritory());
                 entityManager.getTransaction().commit();
                 return true;
             }
