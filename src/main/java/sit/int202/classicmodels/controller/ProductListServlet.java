@@ -22,7 +22,11 @@ public class ProductListServlet extends HttpServlet {
         request.setAttribute("page", page);
         request.setAttribute("pageSize", pageSize);
         request.setAttribute("itemCount", productRepository.countAll());
-        getServletContext().getRequestDispatcher("/product-list.jsp").forward(request, response);
+        int itemCount = productRepository.countAll();
+        int totalPage = itemCount / pageSize + (itemCount % pageSize == 0 ? 0 :1);
+        request.setAttribute("totalPage", totalPage);
+//        getServletContext().getRequestDispatcher("/product-list.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/new-product-list.jsp").forward(request,response);
     }
 
 
