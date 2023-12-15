@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import sit.int202.classicmodels.entities.Office;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class OfficeRepository {
@@ -73,21 +72,26 @@ public class OfficeRepository {
 
     public boolean update(Office newOffice) {
         if (newOffice != null) {
-            EntityManager entityManager = getEntityManager();
-            Office office = find(newOffice.getOfficeCode());
-            if (office != null) {
-                entityManager.getTransaction().begin();
-                //set all attributes office with newOffice (DIY)
-                office.setAddressLine1(newOffice.getAddressLine1());
-                office.setAddressLine2(newOffice.getAddressLine2());
-                office.setCity(newOffice.getCity());
-                office.setState(newOffice.getState());
-                office.setCountry(newOffice.getCountry());
-                office.setPostalCode(newOffice.getPostalCode());
-                office.setPhone(newOffice.getPhone());
-                office.setTerritory(newOffice.getTerritory());
+            try {
+                EntityManager entityManager = getEntityManager();
+                Office office = find(newOffice.getOfficeCode());
+                if (office != null) {
+                    entityManager.getTransaction().begin();
+                    //set all attributes office with newOffice (DIY)
+                    office.setAddressLine1(newOffice.getAddressLine1());
+                    office.setAddressLine2(newOffice.getAddressLine2());
+                    office.setCity(newOffice.getCity());
+                    office.setState(newOffice.getState());
+                    office.setCountry(newOffice.getCountry());
+                    office.setPostalCode(newOffice.getPostalCode());
+                    office.setPhone(newOffice.getPhone());
+                    office.setTerritory(newOffice.getTerritory());
+                }
                 entityManager.getTransaction().commit();
                 return true;
+            } catch (Exception e) {
+                e.printStackTrace(); // or log the exception
+                return false;
             }
         }
         return false;
