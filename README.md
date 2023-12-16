@@ -20,7 +20,7 @@ The Classic Models project is a Java-based web application that demonstrates var
 - **Maven**: Dependency management and project build.
 
 ## Getting Started
-1. **Clone the Repository**: `git clone https://github.com/LynchzDEV/classicmodels_int202.git`
+1. **Clone the Repository**: `git clone https://github.com/Tonnamkit/classicmodels_int202.git`
 2. **Build the Project**: Navigate to the project directory and run `mvn clean install`.
 3. **Run the Application**: Deploy the built application to a Servlet container like Tomcat.
 4. **Access the Application**: Open your browser and go to `http://localhost:8080/` (adjust the port according to your Tomcat configuration).
